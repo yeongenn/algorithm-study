@@ -35,7 +35,18 @@ public class Solution3 {
         // System.out.println(Arrays.toString(arr_A));
         // System.out.println(Arrays.toString(arr_B));
 
-        // 
+        // ㅠㅠ
+        int sum = 0;
+        int max = 0;
+        for(int i = 1 ; i <= arr_B.length - arr_A.length ; i++){
+            for(int j = 0 ; j < arr_A.length ; j++){
+                sum += arr_A[j] * arr_B[j];
+                max = sum;
+            }
+        }
+        
+        // 확인
+        System.out.println("sum : " + sum + ", max : " + max);
 
 
 
