@@ -24,34 +24,27 @@ public class Solution3 {
             arr_A[i] = sc.nextInt();
         }
 
-        // System.out.println(Arrays.toString(arr_A));
-
         // B 배열
         for (int i = 0; i < arr_B.length; i++) {
             arr_B[i] = sc.nextInt();
         }
 
-        // 확인
-        // System.out.println(Arrays.toString(arr_A));
-        // System.out.println(Arrays.toString(arr_B));
-
         // 풀이 중
-        //int sum = 0;
-
+        int max = 0;
         for (int i = 0; i <= arr_B.length - arr_A.length; i++) {
-            int sum = 0;
-            int max = 0;
             for (int j = 0; j < arr_A.length; j++) {
+                int sum = 0;
                 sum += arr_A[j] * arr_B[j + i];
-                if (max < sum) max = sum; // max가 초기화 되니까 이건 언제나 참이네 <- 수정하기
+                if (max < sum) {
+                    max = sum;
+                }
 
+                // 확인
+                System.out.println("sum : " + sum + ", max : " + max);
 
             }
 
-            // 확인
-            System.out.println("sum : " + sum + ", max : " + max);
         }
-
 
     }
 
