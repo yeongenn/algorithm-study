@@ -4,21 +4,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
-import java.util.StringTokenizer;
 
 public class Solution10773 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = null;
+
+        // StringTokenizer 필요 X
+        int T = Integer.parseInt(br.readLine());
+
         Stack<Integer> myStack = new Stack<>();
 
         int sum = 0;
 
-        st = new StringTokenizer(br.readLine());
-        int T = Integer.parseInt(st.nextToken());
         for (int i = 1; i <= T; i++) {
-            st = new StringTokenizer(br.readLine());
-            int num = Integer.parseInt(st.nextToken());
+            int num = Integer.parseInt(br.readLine());
             if (num != 0) {
                 myStack.push(num);
             } else {
@@ -26,8 +25,19 @@ public class Solution10773 {
             }
         }
 
-        for (int i = 0; i < myStack.size(); i++) {
-            sum += myStack.get(i);
+        // enhanced for
+        // for(int i : myStack){
+        // sum += i;
+        // }
+
+        // for
+        // for (int i = 0; i < myStack.size(); i++) {
+        // sum += myStack.get(i);
+        // }
+
+        // while
+        while (!myStack.isEmpty()) {
+            sum += myStack.pop();
         }
 
         System.out.println(sum);
