@@ -20,9 +20,9 @@ public class Solution18258 {
         int lastValue = 0;
 
         for (int i = 0; i < T; i++) {
-            String str = br.readLine();
+            st = new StringTokenizer(br.readLine());
 
-            switch(str){
+            switch(st.nextToken()){
                 case "pop":
                     if (queue.isEmpty()){
                         sb.append(-1).append("\n");
@@ -54,9 +54,7 @@ public class Solution18258 {
                         sb.append(lastValue).append("\n");
                     }
                     break;
-                default:
-                    st = new StringTokenizer(str);
-                    st.nextToken();
+                case "push":
                     int x = Integer.parseInt(st.nextToken());
                     queue.add(x);
                     lastValue = x;
