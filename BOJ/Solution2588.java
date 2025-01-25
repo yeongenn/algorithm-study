@@ -10,18 +10,17 @@ public class Solution2588 {
         int A = sc.nextInt();
         int B = sc.nextInt();
 
-
-        // 숫자열 길이
-        // (int) (Math.log10(num) + 1)
-        int T = (int) (Math.log10(B) + 1);
         int sum = 0;
-        for(int i = 1 ; i <= T ; i++){
-            int n = A * (B%10);
-            System.out.println(n);
-            sum += n;
-            B = B/10;      
-        };
-        
+
+        // (세 자리) * (세 자리)
+        for(int i = 0; i < 3; i++){
+            int num = B % 10;
+            B /= 10;
+            int m = num * ((int) (Math.pow((double) 10, (double) i)));
+            System.out.println((A * m) / ((int) (Math.pow((double) 10, (double) i))));
+            sum += (A * m);
+        }
+
         System.out.println(sum);
         
         
