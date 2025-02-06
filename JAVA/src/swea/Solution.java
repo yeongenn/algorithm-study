@@ -1,3 +1,4 @@
+package JAVA.src.swea;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 

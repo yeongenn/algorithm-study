@@ -1,4 +1,4 @@
-package BOJ.ForWhile;
+package JAVA.src.boj.ForWhile;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

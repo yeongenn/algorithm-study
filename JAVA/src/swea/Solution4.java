@@ -1,3 +1,4 @@
+package JAVA.src.swea;
 import java.util.Scanner;
 
 public class Solution4 {
