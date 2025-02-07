@@ -35,6 +35,8 @@
 
 #     print(f'#{t + 1} {count_black} {i * j - count_black}')
 
+#########################################################################################################
+
 # 성실한 직원 찾기
 T = int(input())
 
@@ -51,15 +53,19 @@ for t in range(T):
             else:
                 punc_emp_dict[emp_list[h][w]] += 1
 
-    punc_emp_dict = dict(sorted(punc_emp_dict.items(), key=lambda emp : emp[1]))
-
     max_emp = max(punc_emp_dict.values())
-
-    for k in punc_emp_dict.keys():
-        if punc_emp_dict[k] == max_emp:
-            print(k)
-            break
+    emp_list = []
         
+    for k, v in punc_emp_dict.items():
+        if punc_emp_dict[k] == max_emp:
+            emp_list.append(k)
+
+    print(f'#{t + 1} {min(emp_list)}')
+
+#########################################################################################################
+
+    
+    
 
 
 
