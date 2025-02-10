@@ -1,33 +1,36 @@
-for i in range(1):
+for i in range(10):
     tc = int(input())
+    
+    # 0 : 우, 1 : 하, 2 : 좌
+    dx = [0, 1, 0]
+    dy = [1, 0, -1]
 
-    ladders = [list(map(int, input().split())) for _ in range(3)]
-    check = [[False] * 3] * 3
+    ladders = [list(map(int, input().split())) for _ in range(100)]    
+    start = 0
+    
+    for c in range(100):
+        x, y = 0, c     # 좌표
+        
+        if ladders[x][y] == 0:
+            continue
+        
+        dir = 1 # 아래가 기본 방향
+        while x < 99:
+            if dir == 1:
+                if y > 0 and ladders[x][y - 1] == 1:    # 좌
+                    dir = 2
+                elif y < 99 and ladders[x][y + 1] == 1: # 우
+                    dir = 0
+            else:
+                if ladders[x + 1][y] == 1:  # 아래
+                    dir = 1
+            
+            # 이동
+            x += dx[dir]
+            y += dy[dir]
+            
+        if ladders[x][y] == 2:
+            start = c
+            break
 
-    d = [[0, 1], [0, -1], [1, 0]]
-
-    x = 0
-    dir_h = 0
-
-    for j in range(3):
-        y = j
-        # while ladders[x][y] != 2:
-        if ladders[x][y] == 1:
-            check[x][y] = True
-            if y == 0:
-                if ladders[x][y + 1] == 1:  # 오른쪽
-                    y += 1
-                else:
-                    x += 1
-
-            if 0 <= y - 1 < 3:
-                if ladders[x][y + 1] == 1:  # 오른쪽
-                    y += 1
-                elif ladders[x][y - 1] == 1:  # 왼쪽
-                    y -= 1
-                else:
-                    x += 1  # 기본 진행 방향
-
-    result = 0
-
-    print(f'{tc} {result}')
+    print(f'#{tc} {start}')
