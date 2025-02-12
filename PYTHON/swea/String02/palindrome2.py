@@ -15,3 +15,5 @@ for _ in range(10):
 
     result = max(max_palindrome(arr), max_palindrome(turned_arr))
     print(f'#{tc} {result}')
+
+
