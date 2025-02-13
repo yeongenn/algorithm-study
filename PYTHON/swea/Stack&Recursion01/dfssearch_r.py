@@ -2,7 +2,7 @@ from collections import defaultdict
 
 T = int(input())
 
-################ runtime error ################
+################ runtime error ################ -> 수정하기
 # def search(graph, n, stack):
 #     if n not in stack:
 #         stack.append(n)
