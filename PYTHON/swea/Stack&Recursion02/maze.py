@@ -1,40 +1,42 @@
 T = int(input())
 
-# def escape(x, y):
-#     global maze
-#     if maze[x][y] == 2: return 1
-#     pass
+def escape(x, y):
+    global flag
+    
+    # 체크해야 할 모든 조건을 확인한 후 return 하는게 X
+    # 말 그대로 함수 '종료' 조건 체크한 후에만 return 처리
+    if flag == 1: return
+    
+    if not visited[x][y]:
+        visited[x][y] = True
+        
+    if maze[x][y] == 3: 
+        flag = 1
+        
+    # 상하좌우
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if nx >= 0 and nx < N and ny >= 0 and ny < N:   # 미로 범위 내에서만
+            if (maze[nx][ny] != 1) and not visited[nx][ny]: # 벽이 아니고 아직 지난 적 없을 때만
+                escape(nx, ny)
+    
 
 for t in range(T):
     N = int(input())
     maze = [list(map(int, list(input()))) for _ in range(N)]
-    # print(maze)
-
-    # 출발, 도착
-    start, end = [], []
-    for i in range(N):
-        if 3 in maze[i]:
-            start = [i, maze[i].index(3)]
-        if 2 in maze[i]:
-            end = [i, maze[i].index(2)]
-
-    # print(start, end)
-    # escape(*start)
-
-    x, y = start
+    visited = [[False] * N for _ in range(N)]
+    flag = 0
     
-    # 상하좌우
-    dx = [-1, 1, 0, 0]
-    dy = [0, 0, -1, 1]
+    x, y = 0, 0    # 출발
+    for i in range(N):
+        if 2 in maze[i]:
+            x, y = i, maze[i].index(2)
+    
+    escape(x, y)
 
-    for i in range(4):
-        for j in range(1, N):
-            nx = x + (dx[i] * j)
-            ny = y + (dy[i] * j)
-
-            if nx < 0 or nx >= N or ny < 0 or ny >= N:
-                if maze[nx][ny] == 0:
-                    continue
-
-    result = 0  # 도착할 수 있으면 1, 아니면 0
-    print(f'#{t + 1} {result}')
+    # 도착할 수 있으면 1, 아니면 0
+    print(f'#{t + 1} {flag}')
