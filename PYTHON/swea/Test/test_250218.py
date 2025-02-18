@@ -3,25 +3,39 @@
 # 이동할 수 있는 최대 칸 수 수하기
 # 4분면에서 현재 높이보다 작아야하고 그 중에서 가장 작은 높이로만 이동 가능
 
+import sys
+sys.stdin = open("c:\\SSAFY\\algo-python\\PYTHON\\swea\\Test\\input.txt", "r")
 
-"""
-test case
+T = int(input())
 
-3
-5
-19 57 74 73 94
-26 27 32 98 61
-40 88 49 38 25
-21 66 53 95 46
-80 23 58 39 89
-7
-40 49 56 83 84 31 11
-42 95 12 16 21 19 26
-98 93 29 68 19 92 82
-23 13 24 58 35 25 47
-17 66 39 67 70 14 87
-22 34 46 94 69 96 89
-62 88 50 51 61 71 86
-9
 
-"""
+def search(x, y):
+    dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
+    next_x, next_y = x, y
+    min_val = arr[x][y]
+    for i, j in zip(dx, dy):
+        nx = x + i
+        ny = y + j
+        if 0 <= nx < N and 0 <= ny < N:
+            if arr[nx][ny] < arr[x][y] and arr[nx][ny] < min_val:
+                min_val = arr[nx][ny]
+                next_x, next_y = nx, ny
+
+    if next_x == x and next_y == y:
+        return 1  # 더 이상 갈 수 없으니까 방문했다 표시만 리턴
+    else:
+        return 1 + search(next_x, next_y)  # distance를 누적 + 다음 좌표 찾아가야 하니까 <- swea 콜라츠 추측 문제
+
+
+for t in range(T):
+    N = int(input())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+
+    result = 0
+    distance = 0
+    for x in range(N):
+        for y in range(N):
+            distance = search(x, y)
+            result = max(result, distance)
+
+    print(f"#{t + 1} {result}")
