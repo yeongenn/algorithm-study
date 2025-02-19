@@ -29,3 +29,4 @@ for i in range(1, N + 1):
 print('Nice' if can_get_snack else 'Sad')
 
 # 때려처 안해 간식 먹지마
+# to solve

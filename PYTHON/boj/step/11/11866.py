@@ -16,3 +16,5 @@ while people:
 result.append(people.pop()) # 마지막 남은 사람 제거
 print(f'<{", ".join(map(str, result))}>')
 
+# to solve
+
