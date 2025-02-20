@@ -1,45 +1,53 @@
+################################## w/ deque ##################################
+# # deque에는 rotate라는 끝내주는 함수가 있답니다..^^
+
+# from collections import deque
+
+# N = int(input())
+
+# paper = list(map(int, input().split()))
+# paper = deque(list(enumerate(paper, 1)))
+
+# result = []
+
+# while len(paper) != 1:
+#     now = paper.popleft()
+#     step = now[1]   # 풍선 안 종이에 적힌 값
+#     result.append(now[0])   # 현재 터뜨리는 풍선 번호
+#     if step > 0:
+#         paper.rotate(-((step - 1) % len(paper)))
+#     elif step < 0:
+#         paper.rotate(abs(step) % len(paper))
+    
+# else: result.append(paper.pop()[0])
+
+# print(*result)
+
+################################## w/o deque ##################################
+# index 양수로 맞추려다가 오답 잔치
+# tkim : 인덱스가 꼭 양수일 필요는 없잖아? 파이썬에서는 음수인 채로도 연산 가능함ㅎㅋ
+
 N = int(input())
-# balloons = [x for x in range(1, N + 1)]
-paper = list(map(int, input().split())) # [3, 2, 1, -3, -1]
+
+paper = list(map(int, input().split()))
 paper = list(enumerate(paper, 1))
-# print(paper)  # [(1, 3), (2, 2), (3, 1), (4, -3), (5, -1)]
 
-index = 0   # 시작 인덱스
+index = 0
 result = []
-next = paper.pop(index)
-temp = next[1]
-result.append(next[0])
 
-for _ in range(N - 1):
-    if len(paper) == 1:
-        result.append(paper[0][0])  # 하나만 남으면 그거 터뜨리면 될테니까
-        break
-
-    print(temp)
-    if temp > 0:
-        index += (temp - 1)
-        if index >= len(paper):
-            index %= len(paper)
-    elif temp < 0:
-        if temp <= index:
-            index += temp
-        else: index += abs(temp)
-        if index >= len(paper):
-            index %= len(paper)
-        
-    next = paper.pop(index)
-    temp = next[1]
-    result.append(next[0])
+while len(paper) != 1:
+    now = paper.pop(index)
+    step = now[1]
+    result.append(now[0])
+    
+    if step > 0:
+        index += (step - 1)
+        index %= len(paper)
+    else:
+        index += step
+        index %= len(paper)
+else:
+    result.append(paper.pop()[0])
     
 print(*result)
 
-"""
-반례
-
-입력
-10
-1 -2 3 -4 5 -6 7 -8 9 -10
-
-출력
-1 2 9 3 6 5 7 8 10 4
-"""
