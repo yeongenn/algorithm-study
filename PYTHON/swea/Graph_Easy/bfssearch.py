@@ -20,20 +20,32 @@ for t in range(T):
     q = []
     s_node = 0
     q.append(s_node)  # 시작점
+    is_visited[s_node] = 1    # enqueue와 동시에 visited 마킹 - 시작점 마킹
 
     while nodes[s_node]:
         if len(q) == 0:
             break
 
         temp = q.pop(0)
-        if not is_visited[temp]:
-            is_visited[temp] = True
-            print(temp, end=" ")
-            for i in nodes[temp]:
-                if not is_visited[i]:
-                    q.append(i)
+
+        # dequeue한 다음 visited에 마킹
+        # if not is_visited[temp]:
+        #     is_visited[temp] = True
+        #     print(temp, end=" ")
+        #     for i in nodes[temp]:
+        #         if not is_visited[i]:
+        #             q.append(i)
+
+        # enqueue와 동시에 visited에 마킹
+        print(temp, end=" ")
+        for i in nodes[temp]:
+            if not is_visited[i]:
+                q.append(i)
+                is_visited[i] = is_visited[temp] + 1
+                # is_visited의 각 원소는 배열 인덱스를 번호로 삼는 정점들의 방문 순서가 된다
 
     print()
+    print(is_visited)
     
 
 
