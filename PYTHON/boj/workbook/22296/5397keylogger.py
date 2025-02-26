@@ -1,6 +1,8 @@
 import sys
 sys.stdin = open("C:\\SSAFY\\algo-python\\PYTHON\\boj\\input.txt", "r")
 
+####################################### 시간 초과 #######################################
+
 T = int(input())
 
 for _ in range(T):
@@ -28,4 +30,6 @@ for _ in range(T):
     print(''.join(password))
     
     # LinkedList로 해보기
-    # https://hyeinisfree.tistory.com/70
+    # ???
+    
+    
