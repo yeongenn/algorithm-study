@@ -13,6 +13,14 @@ def peek(stack):
 result = []
 stack = []
 for i in range(N):
-    pass
+    while stack and towers[peek(stack)] < towers[i]:
+        stack.pop()
+    else:   
+        if not stack:   # stack이 비었다 == 나보다 큰 값 못 만났다
+            stack.append(i)
+            result.append(0)
+        else:
+            result.append(peek(stack) + 1)
+            stack.append(i)          
 
-print(result)
+print(*result)
