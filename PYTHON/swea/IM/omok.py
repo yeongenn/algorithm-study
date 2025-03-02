@@ -14,9 +14,8 @@ def play(x, y, s):
                 if omok_board[nx][ny] == s:
                     check.append((nx, ny))
                 else: break
-        if len(check) < 5: continue
-        elif len(check) > 5: continue
-        else:
+
+        if len(check) == 5:
             if omok_board[x - n][y - m] != s:
                 return 1    # 승부 결정났다고 리턴
             else: return 0  # 바로 이전값이 동일하다면 길이가 5 이상이라는 말이니까
@@ -38,8 +37,8 @@ for t in range(T):
                 if is_decided:
                     if omok_board[i][j] == 2:   # 백돌이 이겼으면 lose
                         final_result = "Noheul LOSE T.T", (i + 1, j + 1)
-                        break
                     else:   # 흑돌 이겼으니 win
                         final_result = "Noheul WIN!", (i + 1, j + 1)
+                    break
     
     print(f'#{t + 1}', *final_result)
