@@ -31,4 +31,24 @@ for i in range(N):
 
 ####################################### review #######################################
 
+""""
+Floyd-Warshall
 
+시간 복잡도 : O(N ^ 3)
+이 문제의 경우 1 <= N <= 100 이라 시간 내 가능
+
+이런 생각은 대체 어찌..하는건지....??..
+"""
+N = int(input())
+adj = [list(map(int, input().split())) for _ in range(N)]
+
+for k in range(N):
+    for i in range(N):
+        for j in range(N):
+            if adj[i][k] and adj[k][j]:
+                adj[i][j] = 1
+                
+for r in adj:   # 출력
+    for c in r:
+        print(c, end=" ")
+    print()
