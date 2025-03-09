@@ -1,4 +1,4 @@
-package JAVA.src.boj;
+package JAVA.src.boj.etc;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package JAVA.src.boj;
+package JAVA.src.boj.StackQueue;
 
 import java.util.LinkedList;
 import java.util.Queue;
