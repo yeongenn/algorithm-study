@@ -11,7 +11,7 @@ public class InOrder {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = null;
 
-        int T = 2;      // 확인용
+        int T = 10;      // 확인용
         for (int i = 0; i < T; i++){
             int N = Integer.parseInt(br.readLine());
             String[] tree = new String[N + 1];
