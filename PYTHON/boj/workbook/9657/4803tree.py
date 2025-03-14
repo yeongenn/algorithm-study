@@ -1,6 +1,8 @@
 import sys
 sys.stdin = open("C:\\Users\\SSAFY\\Desktop\\YH\\algo-python\\PYTHON\\boj\\input.txt", "r")
 
+# to solve
+
 from collections import deque
 
 tc = 1
