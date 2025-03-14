@@ -1,13 +1,17 @@
 import sys
-sys.stdin = open("C:\\Users\\SSAFY\\Desktop\\YH\\algo-python\\PYTHON\\boj\\input.txt", "r")
+# sys.stdin = open("C:\\Users\\SSAFY\\Desktop\\YH\\algo-python\\PYTHON\\boj\\input.txt", "r")
+sys.stdin = open("C:\\SSAFY\\algo-python\\PYTHON\\boj\\input.txt", "r")
 
-# to solve
+def search(n):
+    pass
 
-from collections import deque
+############################# while 문 내 코드는 문제 없음 #############################
+# search() 내에서 cycle 체크하는 부분 다시 생각해서 작성하기
 
 tc = 1
 while True:
     T = 0
+    is_tree = True
     
     N, M = map(int, input().split())
 
@@ -20,21 +24,23 @@ while True:
     for _ in range(M):
         s, e = map(int, input().split())
         tree[s].append(e)
-        
-    # # 트리 확인
-    # # nodes = deque([n for n in range(1, N + 1)])
-    # visited = [0] * (N + 1)
-    # for i in range(1, N + 1):
-    #     if visited[i]:
-    #         continue
-        
-    #     for j in range(len(tree[i])):
-    #         if visited[tree[i][j]]:
-    #             T += 1
-    #         else:
+    print(*tree)
                 
+    visited = [0] * (N + 1)
     
-    # 나머지 개별 노드 확인
+    for i in range(1, N + 1):
+        if not visited[i]:
+            search(i)
+            if is_tree:
+                T += 1
     
-    print(f'Case {tc}: ', *tree)
+    result = ''
+    if T > 1:
+        result = f'A forest of {T} trees.'
+    elif T == 1:
+        result = 'There is one tree.'
+    else:
+        result = 'No trees.'
+        
+    print(f'Case {tc}: {result}')
     tc += 1
