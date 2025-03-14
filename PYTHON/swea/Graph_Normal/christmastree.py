@@ -6,6 +6,7 @@ T = int(input())
 def dfs(node):
     if node == -1: return   # 더 이상 확인할 자식 노드가 없으면 종료
     
+    # 어느 방법이든 왼쪽, 오른쪽 탐색은 동일
     left = ornms[node][0]
     right = ornms[node][1]
     
@@ -24,11 +25,11 @@ def dfs(node):
     # dfs(right)
     # print(node, end=" ")
     
-    preorder.append(node)
+    preorder.append(node)       # root - left - right => pre
     dfs(left)
-    inorder.append(node)
+    inorder.append(node)        # left - root - right => in
     dfs(right)
-    postorder.append(node)
+    postorder.append(node)      # left - right - root => post
 
 for t in range(T):
     N = int(input())
@@ -45,7 +46,7 @@ for t in range(T):
     postorder = []      # 후위
   
     print(f'#{t + 1}')
-    dfs(1)      # 시작점은 1
+    dfs(1)      # 시작점은 1(root node of this tree)
     print(*inorder)
     print(*preorder)
     print(*postorder)
