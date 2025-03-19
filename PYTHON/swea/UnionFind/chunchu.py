@@ -1,25 +1,33 @@
 import sys
 sys.stdin = open("c://Users//SSAFY//Desktop//YH//algo-python//PYTHON//swea//input.txt", "r")
 
-def find_set(x):
-    if parents[x] != x:
-        parents[x] = find_set(parents[x])
-    return parents[x]
-
-def alliance(x, y):
-    pass
-
+# UF 미사용 버전
 def war(x, y):      # countries[x], countries[y]
-    pass
+    global alive
+    side_1 = side_2 = 0
+    
+    for n in countries[x]:
+        side_1 += people[n]
+        
+    for m in countries[y]:
+        side_2 += people[m]
+        
+    if side_1 > side_2:
+        for m in countries[y]:
+            alive[m] = 0
+    elif side_1 < side_2:
+        for n in countries[x]:
+            alive[n] = 0
+    else:
+        for k in (countries[x] + countries[y]):
+            alive[k] = 0
 
 T = int(input())
 
 for t in range(T):
     N = int(input())    # 국가 수
     people = [0] + list(map(int, input().split()))
-    # print(people)
-    parents = [x for x in range(N + 1)]
-    countries = [[] for _ in range(N + 1)]      # 동맹국 리스트 관리
+    countries = [[x] for x in range(N + 1)]      # 동맹국 리스트 관리
     alive = [1] * (N + 1)
     
     S = int(input())    # 동맹, 전쟁 상황 수
@@ -27,13 +35,11 @@ for t in range(T):
         situation, x, y = input().split()
         x = ord(x) - 64
         y = ord(y) - 64
-        # print(x, y)
         
         if situation == 'alliance':
-            alliance(x, y)
-            pass
+            countries[x].append(y)
+            countries[y].append(x)
         else:           # war
             war(x, y)
-            pass
-    
-    print(f'#{t + 1}', *alive)
+            
+    print(f'#{t + 1} {sum(alive[1::])}')
