@@ -13,3 +13,20 @@ elif N == K:
     print(0)
 else:
     pass
+
+"""
+# dp 배열 관리해야겠지?? 
+
+N < K:
+    재귀(K)
+
+재귀함수(K):
+    # 종료 조건 어떻게 설정?
+    if [조건]:
+        return dp[K] ???
+
+    if K % 2 == 0:
+        return 재귀함수(K // 2)
+    else:
+        return 1 + 재귀함수(K + 1)
+"""
