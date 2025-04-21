@@ -13,6 +13,11 @@ level : 점원의 수
 branch : 포함되느냐 아니냐
 """
 
+import sys
+sys.stdin = open("c://Users//SSAFY//Desktop//YH//algo-python//PYTHON//swea//input.txt", "r")
+# sys.stdin = open("c://SSAFY//algo-python//PYTHON//swea//input.txt", "r")
+
+
 T = int(input())
 
 def recur(cnt, total_height):
@@ -39,5 +44,7 @@ for t in range(T):
     N, B = map(int, input().split())
     heights = list(map(int, input().split()))
     answer = 200001
+
+    recur(0, 0)
     
-    print(f'#{t + 1}')
+    print(f'#{t + 1} {answer - B}')

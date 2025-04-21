@@ -1,31 +1,31 @@
-N = int(input())
-
-result = []
-result.append(N)    # 첫번째 수 넣기
-idx = 0 # 인덱스용
-
-max_len = 0
+import sys
+sys.stdin = open("c://Users//SSAFY//Desktop//YH//algo-python//PYTHON//boj//input.txt", "r")
+# sys.stdin = open("c://SSAFY//algo-python//PYTHON//boj//input.txt", "r")
 
 
-for n in range(99, 0, -1):
-    # 두번째 숫자
-    result.append(n)
-    idx += 1
+N = int(input())    # 양의 정수
 
+num_list = [] * N
+num_list.append(N)
+
+max_length = len(num_list)
+max_list = num_list
+
+for n in range(N, 0, -1):
+    num_list.append(n)
+    idx = 2
     while True:
-        temp = result[idx - 1] - result[idx]
-        if temp < 0:
+        temp = num_list[idx - 2] - num_list[idx - 1]
+        if temp >= 0:
+            num_list.append(temp)
+        else:
             break
-        result.append(temp)
         idx += 1
-
-    if len(result) == 8:    # 확인용 하드코딩
-        break
     
-    result = [100]
-    idx = 0
+    if max_length <= len(num_list):
+        max_length = len(num_list)
+        max_list = num_list
+    num_list = [N]      # 초기화
 
-
-print(*result)
-
-
+print(max_length)
+print(*max_list)
