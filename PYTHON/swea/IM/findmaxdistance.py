@@ -1,5 +1,6 @@
 import sys
-sys.stdin = open("C:\\SSAFY\\algo-python\\PYTHON\\swea\\input.txt", "r")
+sys.stdin = open("c://Users//SSAFY//Desktop//YH//algo-python//PYTHON//swea//input.txt", "r")
+# sys.stdin = open("c://SSAFY//algo-python//PYTHON//swea//input.txt", "r")
 
 T = int(input())
 
@@ -19,4 +20,3 @@ for t in range(T):
                 break
     
     print(f'#{t + 1} {result}')
-    

@@ -1,3 +1,7 @@
+import sys
+sys.stdin = open("c://Users//SSAFY//Desktop//YH//algo-python//PYTHON//swea//input.txt", "r")
+# sys.stdin = open("c://SSAFY//algo-python//PYTHON//swea//input.txt", "r")
+
 T = int(input())
 
 for t in range(T):
@@ -8,6 +12,7 @@ for t in range(T):
     
     m = [i + 1 for i in range(M1)] + [i + 1 for i in range(M2)]
     m.sort()
+    print(m)
     
     sum = 0    
     for x, y in zip(blocks, m):
