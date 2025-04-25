@@ -1,3 +1,7 @@
+import sys
+sys.stdin = open("c://Users//SSAFY//Desktop//YH//algo-python//PYTHON//swea//input.txt", "r")
+# sys.stdin = open("c://SSAFY//algo-python//PYTHON//swea//input.txt", "r")
+
 T = int(input())
 
 # 파이썬 버전
@@ -12,11 +16,11 @@ for t in range(T):
             if len(pipe) == 0:
                 continue
             else:
-                count += len(pipe)
+                count += len(pipe)  # 쌓여있는 파이프 수 만큼 잘린 조각 추가
         elif li[i] == "(":
-            pipe.append("1")
+            pipe.append("O")    # 아무 값이나 넣어도 상관 X
         else:
-            pipe.pop()
+            pipe.pop()          # 파이프 끝
             count += 1
   
     print(f'#{t + 1} {count}')

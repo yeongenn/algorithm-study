@@ -17,8 +17,9 @@ def search(x, y):
         nx = x + i
         ny = y + j
         if 0 <= nx < N and 0 <= ny < N:
+            # 다음 값이 현재 값보다 작은지 + 현재 위치 기준 가장 작은 값인지
             if arr[nx][ny] < arr[x][y] and arr[nx][ny] < min_val:
-                min_val = arr[nx][ny]
+                min_val = arr[nx][ny]       # 최솟값 갱신
                 next_x, next_y = nx, ny
 
     if next_x == x and next_y == y:
