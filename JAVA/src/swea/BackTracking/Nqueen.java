@@ -51,7 +51,7 @@ public class Nqueen {
             if (isValid) {
                 queens[n] = j;      // 현재 행(j)에 놓을 수 있다
                 visited[j] = true;  // 마킹
-                play(n + 1)         // 다음 행에 퀸 놓으러 가기
+                play(n + 1);         // 다음 행에 퀸 놓으러 가기
                 visited[j] = false; // 언마킹
             }
 

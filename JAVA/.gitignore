@@ -11,6 +11,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -168,5 +169,7 @@ $RECYCLE.BIN/
 
 # vscode
 .vscode
+
+*.iml
 
 # End of https://www.toptal.com/developers/gitignore/api/java,windows,intellij
