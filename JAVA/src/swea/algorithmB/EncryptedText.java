@@ -22,6 +22,7 @@ public class EncryptedText {
             stk = new StringTokenizer(br.readLine(), " ");
             int x, y;
             while (stk.hasMoreTokens()) {
+                // if-else if 구문으로 하니 메모리 초과 뜬다
                 switch (stk.nextToken()) {
                     case "I":
                         // 앞에서부터 x번째 암호문 바로 다음에 y개 암호문 삽입
