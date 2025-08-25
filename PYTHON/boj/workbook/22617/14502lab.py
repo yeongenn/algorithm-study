@@ -1,5 +1,6 @@
 import sys
-sys.stdin = open("C:\\Users\\SSAFY\\Desktop\\YH\\algo-python\\PYTHON\\boj\\input.txt", "r")
+# sys.stdin = open("C:\\Users\\SSAFY\\Desktop\\YH\\algo-python\\PYTHON\\boj\\input.txt", "r")
+sys.stdin = open("C:\\Users\\SSAFY\\Desktop\\yeongenn\\algorithm-study\\PYTHON\\boj\\input.txt", "r")
 
 import copy
 
@@ -16,6 +17,7 @@ def infect(r, c):
             if 0 <= ny < N and 0 <= nx < M:
                 if virus[ny][nx] == 0:
                     virus[ny][nx] = 2   # 감염
+                    infect(ny, nx)
                 elif virus[ny][nx] == 1:
                     break
             
