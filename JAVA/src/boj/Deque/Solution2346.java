@@ -29,7 +29,8 @@ public class Solution2346 {
         List<int[]> list = new ArrayList<>(deque);
         int[] result = new int[N];
         for (int j = 0; j < N - 1; j++){
-            int[] now = list.removeFirst();
+//            int[] now = list.removeFirst();       // removeFirst: jdk 21 이후만 지원
+            int[] now = list.remove(0);
             // int[] now = list.remove(0); // BOJ java11은 removeFirst() 지원 X
             int step = now[1];
             result[j] = now[0];
@@ -48,7 +49,8 @@ public class Solution2346 {
         }
 
         // 마지막 남은 풍선 터뜨리기
-        result[N - 1] = list.removeFirst()[0];
+//        result[N - 1] = list.removeFirst()[0];        // removeFirst: jdk 21 이후만 지원
+        result[N - 1] = list.remove(0)[0];
         // result[N - 1] = list.remove(0)[0];
 
         for (int i : result) {
