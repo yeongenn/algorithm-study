@@ -13,6 +13,7 @@ dy, dx, dz = [-1, 1, 0, 0, 0, 0], [0, 0, -1, 1, 0, 0], [0, 0, 0, 0, -1, 1]
 queue = deque()
 
 # 익은 토마토 찾기
+# 3차원: for문 돌릴 때 역순으로
 for h in range(H):
     for n in range(N):
         for m in range(M):
