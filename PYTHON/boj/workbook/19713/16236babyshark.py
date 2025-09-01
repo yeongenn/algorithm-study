@@ -19,45 +19,86 @@ sys.stdin = open("C:\\Users\\SSAFY\\Desktop\\yeongenn\\algorithm-study\\PYTHON\\
 from collections import deque
 
 N = int(input())
-list = [list(map(int, input().split())) for _ in range(N)]
+graph = [list(map(int, input().split())) for _ in range(N)]
 
 dy, dx = [-1, 1, 0, 0], [0, 0, -1, 1]
 
-fish_eaten = 0
 shark_weight = 2
-dist = [[0] * N for _ in range(N)]
-queue = deque()
+
+INF = 1e9
 
 # 아기 상어 위치
-cy, cx = -1, -1
+cy, cx = 0, 0
 for i in range(N):
     for j in range(N):
-        if list[i][j] == 9:
+        if graph[i][j] == 9:
             cy, cx = i, j
+            graph[i][j] = 0
             break
 
-# 
-queue.append((cy, cx))
-dist[cy][cx] = 1
+# BFS
+def path():
+    queue = deque([])   
+    # 이동하면서 cy, cx가 변경되므로 밖에서 초기화 X
+    queue.append((cy, cx))
 
-while queue:
-    y, x = queue.popleft()
+    # 방문 배열 밖에서 정의(초기화)하면 오답....
+    visited = [[-1] * N for _ in range(N)]
+    visited[cy][cx] = 0         # 상어 현재 위치 방문 처리
 
-    for i, j in zip(dy, dx):
-        ny, nx = y + i, x + j
-        if 0 <= ny < N and 0 <= nx < N:
-            if list[ny][nx] > shark_weight:
-                continue
+    while queue:
+        y, x = queue.popleft()
 
-            if list[ny][nx] < shark_weight:
-                fish_eaten += 1
-                list[ny][nx] = 0
-            
-            dist[ny][nx] = dist[y][x] + 1
-            queue.append((ny, nx))
+        for i, j in zip(dy, dx):
+            ny, nx = y + i, x + j
 
-    if fish_eaten == shark_weight:
+            # 상어가 이동 가능한지만 확인 - 같거나 커야함
+            # 물고기 먹기는 따로 체크
+            if 0 <= ny < N and 0 <= nx < N:
+                if shark_weight >= graph[ny][nx] and visited[ny][nx] == -1:
+                    visited[ny][nx] = visited[y][x] + 1
+                    queue.append((ny, nx))
+
+    return visited
+
+# 먹을 물고기 찾기 - True / False 반환
+def eat_fish(visited):
+    # print(visited)
+    y, x = cy, cx
+    min_dist = INF
+    for i in range(N):
+        for j in range(N):
+            # BFS에서 지나지 않는 경로는 최단 경로가 아님 + 아기 상어가 먹을 수 있는지 확인
+            if visited[i][j] != -1 and 1 <= graph[i][j] < shark_weight:
+                if visited[i][j] < min_dist:
+                    min_dist = visited[i][j]
+                    y, x = i, j
+
+    # 다 탐색해도 그대로 1e9면 먹을 물고기 없다는 거겟징
+    if min_dist == INF:
+        return False
+    else:
+        return y, x, min_dist
+    
+answer = 0
+fish_eaten = 0
+
+# 갈 수 있는 경로가 있고, 먹을 수 있는 물고기가 있는 동안
+# 물고기 먹으러~
+while True:
+    result = eat_fish(path())
+
+    # 먹을 수 있는 물고기가 없으면
+    if not result:
+        print(answer)
+        break
+    else:
+        # 이동, 물고기 먹으면서 현재 위치 조정
+        cy, cx = result[0], result[1]
+        answer += result[2]
+        graph[cy][cx] = 0
+        fish_eaten += 1
+
+    if fish_eaten >= shark_weight:
         shark_weight += 1
         fish_eaten = 0
-
-print(dist)
