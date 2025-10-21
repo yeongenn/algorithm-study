@@ -3,6 +3,8 @@
 # 커밋 메시지 파일 경로 인자
 commit_msg_file=$1
 commit_msg=$(head -n 1 "$commit_msg_file")
+
+# 현재 브랜치 확인
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 echo "----------------------------------------------------------"
