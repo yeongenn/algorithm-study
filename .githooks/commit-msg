@@ -5,7 +5,9 @@ commit_msg_file=$1
 commit_msg=$(head -n 1 "$commit_msg_file")
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
-echo "📍 현재 브랜치: $current_branch"
+echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"
+echo "▒  현재 브랜치: $current_branch  ▒"
+echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"
 
 # 브랜치 경고 (추후 수정)
 
@@ -14,8 +16,10 @@ valid_prefixes="^feat:|^fix:|^docs:|^style:|^design:|^test:|^refactor:|^build:|^
 
 # 정규식 검사
 if ! echo "$commit_msg" | grep -Eq "$valid_prefixes"; then
-  echo "❌ [ERROR] 커밋 메시지 규칙 위반! ❌"
-  echo "정해진 접두어를 사용해주세요."
+  echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"
+  echo "▒ [ERROR] 커밋 메시지 규칙 위반! ▒"
+  echo "▒ 정해진 접두어를 사용해주세요.  ▒"
+  echo "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"
   exit 1
 fi
 
