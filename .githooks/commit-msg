@@ -3,6 +3,11 @@
 # 커밋 메시지 파일 경로 인자
 commit_msg_file=$1
 commit_msg=$(head -n 1 "$commit_msg_file")
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+echo "📍 현재 브랜치: $current_branch"
+
+# 브랜치 경고 (추후 수정)
 
 # 허용된 접두어 목록
 valid_prefixes="^feat:|^fix:|^docs:|^style:|^design:|^test:|^refactor:|^build:|^ci:|^perf:|^chore:|^rename:|^remove:"
