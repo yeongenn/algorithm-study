@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# 커밋 메시지 파일 경로 인자
+commit_msg_file=$1
+commit_msg=$(head -n 1 "$commit_msg_file")
+
+# 허용된 접두어 목록
+valid_prefixes="^feat:|^fix:|^style:|^refactor:|^chore:"
+
+# 정규식 검사
+if ! echo "$commit_msg" | grep -Eq "$valid_prefixes"; then
+  echo "❌ [ERROR] 커밋 메시지 규칙 위반!"
+  echo "허용된 접두어는 다음과 같습니다:"
+  echo "  feat:, fix:, style:, refactor:, chore:"
+  echo "--------------------------------------------"
+  echo "예시: feat: 로그인 기능 추가"
+  echo "--------------------------------------------"
+  exit 1
+fi
+
+exit 0
