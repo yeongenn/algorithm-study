@@ -5,16 +5,12 @@ commit_msg_file=$1
 commit_msg=$(head -n 1 "$commit_msg_file")
 
 # 허용된 접두어 목록
-valid_prefixes="^feat:|^fix:|^style:|^refactor:|^chore:"
+valid_prefixes="^feat:|^fix:|^docs:|^style:|^design:|^test:|^refactor:|^build:|^ci:|^perf:|^chore:|^rename:|^remove:"
 
 # 정규식 검사
 if ! echo "$commit_msg" | grep -Eq "$valid_prefixes"; then
-  echo "❌ [ERROR] 커밋 메시지 규칙 위반!"
-  echo "허용된 접두어는 다음과 같습니다:"
-  echo "  feat:, fix:, style:, refactor:, chore:"
-  echo "--------------------------------------------"
-  echo "예시: feat: 로그인 기능 추가"
-  echo "--------------------------------------------"
+  echo "❌ [ERROR] 커밋 메시지 규칙 위반! ❌"
+  echo "정해진 접두어를 사용해주세요."
   exit 1
 fi
 
